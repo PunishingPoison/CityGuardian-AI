@@ -1,5 +1,8 @@
 # CityGuardian AI
 
+<img width="1917" height="1017" alt="SS-Edited" src="https://github.com/user-attachments/assets/dc962d03-3040-405e-a3e6-06349fb85ba2" />
+
+
 CityGuardian AI is an intelligent, real-time emergency logistics and disaster management simulation platform built in Java. It procedurally generates city grids and simulates devastating natural disasters. An integrated AI optimizer, powered by the NVIDIA NIM API and the Llama 3.1 8B Instruct model, orchestrates automated benchmarking tests to determine the optimal allocation of emergency vehicles required to minimize casualties while strictly adhering to municipal budget constraints.
 
 ## Key Features and Concepts
