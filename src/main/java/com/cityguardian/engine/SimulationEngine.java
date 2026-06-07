@@ -84,6 +84,9 @@ public class SimulationEngine {
             
             if (c.isInjured()) {
                 c.setEvacuationPath(null); // Injured citizens cannot walk, they must wait for ambulances
+                if (!isCitizenLoaded(c)) {
+                    c.takeDamage(1.5 * deltaTime); // Slowly bleed out if not loaded in an ambulance
+                }
             }
             
             if (c.getEvacuationPath() != null && c.getCurrentPathIndex() < c.getEvacuationPath().size()) {

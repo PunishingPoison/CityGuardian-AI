@@ -7,7 +7,7 @@ import java.util.List;
 
 public class FireDisaster extends Disaster {
     private double timeAccumulator = 0;
-    private final double spreadInterval = 0.8; // Tuned for 3 vs 15 firetruck balance
+    private final double spreadInterval = 1.0; // Tuned for 3 vs 15 firetruck balance
 
     public FireDisaster(int startX, int startY, Severity severity) {
         super(startX, startY, severity);
@@ -50,7 +50,7 @@ public class FireDisaster extends Disaster {
                         if (neighbor != null && !neighbor.hasDisaster() && 
                             neighbor.getType() != com.cityguardian.model.TileType.BURNT && 
                             neighbor.getType() != com.cityguardian.model.TileType.WATER) {
-                            if (Math.random() < 0.4) { // 40% chance to spread per interval
+                            if (Math.random() < 0.3) { // 30% chance to spread per interval
                                 newlyInfected.add(neighbor);
                             }
                         }

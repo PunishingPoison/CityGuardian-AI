@@ -3,6 +3,8 @@ module com.cityguardian {
     requires javafx.fxml;
     requires java.sql;
     requires org.xerial.sqlitejdbc;
+    requires java.net.http;
+    requires com.google.gson;
 
     opens com.cityguardian to javafx.fxml;
     opens com.cityguardian.controller to javafx.fxml;

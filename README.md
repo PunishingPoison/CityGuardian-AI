@@ -1,52 +1,60 @@
-# CityGuardian
+# CityGuardian AI
 
-CityGuardian is a complex, real-time Java application designed to simulate natural disasters and the intelligent deployment of emergency services within a procedurally generated city. The project demonstrates advanced algorithms, state machines, and real-time rendering using JavaFX.
+CityGuardian AI is an intelligent, real-time emergency logistics and disaster management simulation platform built in Java. It procedurally generates city grids and simulates devastating natural disasters. An integrated AI optimizer, powered by the NVIDIA NIM API and the Llama 3.1 8B Instruct model, orchestrates automated benchmarking tests to determine the optimal allocation of emergency vehicles required to minimize casualties while strictly adhering to municipal budget constraints.
 
-## Concepts and Architecture
+## Key Features and Concepts
 
-*   **Procedural City Generation**: Dynamically constructs city grids consisting of roads, residential zones, commercial zones, and hospital infrastructure based on randomized distance-weighted elevation maps.
-*   **A* Pathfinding**: Implements the A* (A-Star) search algorithm for intelligent entity navigation. Citizens use it to find the nearest safe zones, and emergency resources (ambulances, firetrucks) use it to navigate the dynamic road network to reach disaster sites and hospitals.
-*   **Entity State Machines**: Emergency resources operate on strict state machines (Available, Dispatched, Returning) to manage complex logistics, such as picking up injured citizens, reaching capacity limits, and pathfinding to medical facilities.
-*   **Real-time Simulation Loop**: Utilizes an AnimationTimer-based game loop to process physics, movement, disaster spread (e.g., cellular automata for fire), and entity decision-making every frame.
-*   **Custom JavaFX Rendering**: Maps, tiles, and entities are rendered directly onto a JavaFX Canvas, ensuring high-performance visualization of large-scale simulations.
+*   **Procedural City Generation**: Dynamically constructs unique city layouts comprising residential zones, commercial districts, road networks, hospitals, and shelters.
+*   **Real-time Disaster Simulation**: Simulates the spread and impact of multiple disaster types:
+    *   **Fire Outbreaks**: Spreads probabilistically across adjacent buildings over time.
+    *   **Earthquakes**: Instantly causes structural damage and critically injures citizens within an epicenter radius.
+    *   **Floods**: Progressively inundates low-lying areas, trapping citizens.
+*   **Autonomous Agent Optimization**: Conducts isolated visual benchmark tests for each disaster type, iterating through varying quantities of emergency resources. The test data is fed to a Large Language Model to calculate the most cost-effective deployment strategy.
+*   **Advanced Pathfinding**: Utilizes the A* search algorithm to navigate emergency vehicles (Firetrucks, Ambulances, Helicopters) through the city grid to rescue citizens and suppress hazards.
+*   **Dynamic Resource Allocation**: Includes a fine-grained testing toggle that runs granular vehicle increments (1 to 15) at accelerated simulation speeds for high-precision optimization.
 
-## Tech Stack
+## Technology Stack
 
-*   **Language**: Java 17+
-*   **UI Framework**: JavaFX
-*   **Build Tool**: Maven
+*   **Language**: Java (JDK 17+)
+*   **GUI Framework**: JavaFX (Canvas rendering, dynamic charts, and UI controls)
+*   **Build Tool**: Apache Maven
+*   **JSON Serialization**: Google Gson
+*   **AI Integration**: NVIDIA NIM API (Model: meta/llama-3.1-8b-instruct)
 
 ## Installation Guide
 
 ### Prerequisites
-*   Java Development Kit (JDK) 17 or higher installed and configured in your system PATH.
-*   Apache Maven installed.
-*   (Optional) JavaFX SDK configured if not relying strictly on Maven dependencies.
+*   Java Development Kit (JDK) 17 or higher.
+*   Apache Maven installed and configured in your system PATH.
+*   An active NVIDIA NIM API key.
 
-### Build Instructions
-
-1.  Clone the repository to your local machine:
+### Setup Instructions
+1.  Clone the repository:
     ```bash
-    git clone https://github.com/PunishingPoison/CityGuardian.git
-    cd CityGuardian
+    git clone https://github.com/PunishingPoison/CityGuardian-AI.git
+    cd CityGuardian-AI
     ```
-
-2.  Compile and build the project using Maven:
+2.  Build the project using Maven:
     ```bash
-    mvn clean compile
+    mvn clean install
     ```
-
 3.  Run the application:
     ```bash
     mvn javafx:run
     ```
 
-## Walkthrough Guide
+## Walkthrough
 
-1.  **Generate the City**: Upon launching the dashboard, click the "Generate City" button. This will procedurally generate a unique city layout complete with residential districts, commercial zones, roads, and hospitals.
-2.  **Start Simulation**: Click the "Start Simulation" button to begin the real-time simulation loop. Citizens will begin to roam and ambient city logic will activate.
-3.  **Trigger Disasters**: Use the control panel on the left to spawn disasters:
-    *   **Fire**: Spawns a localized fire that dynamically spreads across adjacent tiles. Firetrucks will automatically dispatch to secure the perimeter and extinguish the flames.
-    *   **Flood**: Triggers rising water levels based on terrain elevation. Helicopters will be deployed to rescue stranded citizens from submerged tiles.
-    *   **Earthquake**: Applies instant structural damage and injures citizens within a massive radius. Ambulances will dispatch, load up to 10 injured citizens at a time, and transport them safely to the nearest hospital.
-4.  **Monitor Analytics**: Observe the live charts on the right side of the dashboard, which track the status of the population (Safe, Injured, Casualties, Evacuated) in real-time as emergency services perform their duties.
+### 1. Generating the Environment
+Upon launching the application, use the **City Builder** panel on the left to generate a procedural city. This will render a map populated with citizens, buildings, and infrastructure.
+
+### 2. Manual Simulation Control
+You can manually adjust the number of Firetrucks, Helicopters, and Ambulances using the top control bar. Click **Start** to run the simulation, and use the **Trigger Disasters** section to spawn a Fire, Earthquake, or Flood. The emergency vehicles will automatically dispatch using A* pathfinding to mitigate the disaster and rescue citizens. 
+
+### 3. AI Optimization
+To allow the AI to determine the best resource allocation:
+1.  Enter your NVIDIA NIM API key in the right-side **AI Optimization** panel.
+2.  (Optional) Check the **Fine-Grained Testing (1 to 15)** box. If checked, the system will run 45 consecutive high-speed benchmark tests. If unchecked, it defaults to a faster 9-test benchmark (increments of 5).
+3.  Click **Run AI Optimizer**.
+4.  The application will automatically wipe the city, spawn isolated disasters, and test different quantities of vehicles. 
+5.  Once testing concludes, the AI will analyze the casualty reports against the calculated municipal budget and output its recommended fleet configuration in the **AI Insights** console.

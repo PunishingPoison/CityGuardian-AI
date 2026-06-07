@@ -25,7 +25,6 @@ public class Main extends Application {
 
     @Override
     public void stop() throws Exception {
-        // Close DB connection on exit
         DatabaseManager.close();
         super.stop();
     }

@@ -73,8 +73,13 @@
 
     <!-- Right: AI Recommendations -->
     <right>
-        <VBox spacing="10" styleClass="side-panel" minWidth="250">
+        <VBox spacing="10" styleClass="side-panel" minWidth="350" prefWidth="350">
             <padding><Insets top="20" right="15" bottom="20" left="15"/></padding>
+            <Label text="AI Optimization" styleClass="section-header"/>
+            <Label text="NVIDIA NIM API Key:" textFill="WHITE"/>
+            <TextField fx:id="apiKeyInput" text="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" promptText="Enter API Key"/>
+            <CheckBox fx:id="fineGrainedTestCheck" text="Fine-Grained Testing (1 to 15)" textFill="WHITE"/>
+            <Button text="Run AI Optimizer" onAction="#runAIOptimizer" styleClass="tool-btn" maxWidth="Infinity"/>
             <Label text="AI Insights" styleClass="section-header"/>
             <ListView fx:id="insightsList" VBox.vgrow="ALWAYS" styleClass="insights-list"/>
         </VBox>
